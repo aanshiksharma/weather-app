@@ -3,7 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 
 // CSS
-import "./header.css";
+import "./Header.css";
 
 function Header(props) {
   const searchField = useRef(null); // to refer to the search input field
