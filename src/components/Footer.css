@@ -1,0 +1,52 @@
+footer {
+  background: var(--background-color-blur);
+  backdrop-filter: blur(1.5rem);
+  position: fixed;
+  inset: auto 0 0 0;
+
+  & > .flex {
+    min-height: 4rem;
+    justify-content: center;
+    padding-inline: 1rem;
+    position: relative;
+  }
+
+  .update-status {
+    position: absolute;
+    left: 1rem;
+    color: var(--secondary-text);
+  }
+
+  .pagenation {
+    gap: 0.5rem;
+
+    svg {
+      transition: all 200ms ease;
+      fill: var(--secondary-text);
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 50%;
+      aspect-ratio: 1;
+      width: 1.5rem;
+
+      &.nav-page {
+        width: fit-content;
+        padding: 1px;
+
+        /* svg {
+          height: 0.5rem;
+          width: 0.5rem;
+        } */
+      }
+
+      &.current,
+      &:hover {
+        svg {
+          fill: var(--primary-text);
+        }
+      }
+    }
+  }
+}

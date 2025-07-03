@@ -1,0 +1,19 @@
+.wrapper-main {
+  max-width: 1080px;
+  margin-inline: auto;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-color);
+  outline: 0;
+  background: none;
+  cursor: pointer;
+}

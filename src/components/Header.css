@@ -1,0 +1,75 @@
+.header {
+  background-color: var(--background-color-blur);
+  backdrop-filter: blur(1rem);
+  border-bottom: 1px solid var(--border-color);
+
+  & > .flex {
+    min-height: 4rem;
+    justify-content: space-between;
+    padding-inline: 1rem;
+  }
+
+  .left {
+    gap: 0.5rem;
+    font-size: 1.25rem;
+
+    svg {
+      fill: var(--primary-text);
+    }
+  }
+
+  .right {
+    gap: 0.5rem;
+    overflow: hidden;
+    position: relative;
+
+    .btn {
+      border: none;
+      width: 1.5rem;
+      height: 1.5rem;
+      transition: transform 300ms ease;
+      z-index: 3;
+
+      &.rotate {
+        transform: rotate(45deg);
+      }
+
+      svg {
+        fill: var(--secondary-text);
+        transition: all 200ms ease;
+      }
+
+      &:hover {
+        svg {
+          fill: var(--primary-text);
+        }
+      }
+    }
+
+    .searchBar {
+      transition: all 300ms ease;
+      gap: 0.5rem;
+
+      &.hidden {
+        transform: translateX(120%);
+      }
+
+      input {
+        background: var(--card-background-color);
+        border: 1px solid transparent;
+        outline: 0;
+        padding-inline: 0.5rem;
+        padding-block: 0.25rem;
+        border-radius: 4px;
+        color: var(--secondary-text);
+        font-size: 1rem;
+
+        &:focus-visible,
+        &:focus {
+          border-color: var(--secondary-text);
+          color: var(--primary-text);
+        }
+      }
+    }
+  }
+}
