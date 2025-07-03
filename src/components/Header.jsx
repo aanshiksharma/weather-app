@@ -19,7 +19,7 @@ function Header(props) {
     const tl = gsap.timeline();
 
     // Location Pin svg
-    tl.from(".left svg", {
+    tl.from("header .left svg", {
       y: -20,
       opacity: 0,
       duration: 0.3,

@@ -1,8 +1,16 @@
 import { useRef, useEffect, useState } from "react";
+
+// CSS
 import "./App.css";
-import "./css/utils.css";
+import "./utils.css";
+
+// Components
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+
+// mock weather data
+import mockWeather from "./mockData.json";
 
 let numPages = 3;
 function App() {
@@ -10,6 +18,8 @@ function App() {
   const [loading, setLoading] = useState(true);
   const cityInput = useRef(null);
   const inputForm = useRef(null);
+
+  // const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
   // useEffect(() => {
   //   if ("geolocation" in navigator) {
@@ -30,14 +40,16 @@ function App() {
   //   }
   // }, []);
 
-  let city = {
-    name: "Vice City",
-  };
-
   return (
     <>
-      <Header cityName="Noida" />
-      <Footer lastUpdateTime="5:43 AM" numPages={numPages} currPage={1} />
+      <Header cityName={mockWeather.cityName} />
+      <Hero
+        cityName={mockWeather.cityName}
+        main={mockWeather.main}
+        weather={mockWeather.weather[0]}
+        wind={mockWeather.wind}
+      />
+      <Footer numPages={numPages} currPage={1} />
       {/*       
         props = {
           numPages: "No. of Pages",

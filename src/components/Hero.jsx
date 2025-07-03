@@ -1,0 +1,60 @@
+import React from "react";
+import "./Hero.css";
+
+function Hero(props) {
+  return (
+    <section className="current-weather-container wrapper-main">
+      <div className="current-weather">
+        <div className="weather-data flex">
+          <div className="data-container">
+            <p className="temp">
+              {props.main.temp}&deg;C - {props.weather.description}
+            </p>
+            <div className="location flex">
+              <svg
+                width="14"
+                height="21"
+                viewBox="0 0 14 21"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M7 20.5C6.76667 20.5 6.56667 20.4333 6.4 20.3C6.23333 20.1667 6.10833 19.9917 6.025 19.775C5.70833 18.8417 5.30833 17.9667 4.825 17.15C4.35833 16.3333 3.7 15.375 2.85 14.275C2 13.175 1.30833 12.125 0.775 11.125C0.258333 10.125 0 8.91667 0 7.5C0 5.55 0.675 3.9 2.025 2.55C3.39167 1.18333 5.05 0.5 7 0.5C8.95 0.5 10.6 1.18333 11.95 2.55C13.3167 3.9 14 5.55 14 7.5C14 9.01667 13.7083 10.2833 13.125 11.3C12.5583 12.3 11.9 13.2917 11.15 14.275C10.25 15.475 9.56667 16.475 9.1 17.275C8.65 18.0583 8.275 18.8917 7.975 19.775C7.89167 20.0083 7.75833 20.1917 7.575 20.325C7.40833 20.4417 7.21667 20.5 7 20.5ZM7 16.925C7.28333 16.3583 7.6 15.8 7.95 15.25C8.31667 14.7 8.85 13.9667 9.55 13.05C10.2667 12.1167 10.85 11.2583 11.3 10.475C11.7667 9.675 12 8.68333 12 7.5C12 6.11667 11.5083 4.94167 10.525 3.975C9.55833 2.99167 8.38333 2.5 7 2.5C5.61667 2.5 4.43333 2.99167 3.45 3.975C2.48333 4.94167 2 6.11667 2 7.5C2 8.68333 2.225 9.675 2.675 10.475C3.14167 11.2583 3.73333 12.1167 4.45 13.05C5.15 13.9667 5.675 14.7 6.025 15.25C6.39167 15.8 6.71667 16.3583 7 16.925ZM7 10C7.7 10 8.29167 9.75833 8.775 9.275C9.25833 8.79167 9.5 8.2 9.5 7.5C9.5 6.8 9.25833 6.20833 8.775 5.725C8.29167 5.24167 7.7 5 7 5C6.3 5 5.70833 5.24167 5.225 5.725C4.74167 6.20833 4.5 6.8 4.5 7.5C4.5 8.2 4.74167 8.79167 5.225 9.275C5.70833 9.75833 6.3 10 7 10Z" />
+              </svg>
+              <p>{props.cityName}</p>
+            </div>
+          </div>
+
+          <div className="weather-image-container flex">
+            <img
+              src={`http://openweathermap.org/img/wn/${props.weather.icon}@2x.png`}
+              alt={props.weather.description}
+            />
+
+            <p>{props.weather.description}</p>
+          </div>
+        </div>
+
+        {/* Weather Status Cards */}
+        <div className="weather-stat-cards flex">
+          <div className="card">
+            <p className="factor">Humidity</p>
+            <p className="value">{props.main.humidity}%</p>
+          </div>
+          <div className="card">
+            <p className="factor">Wind Speed</p>
+            <p className="value">{props.wind.speed}m/s</p>
+          </div>
+          <div className="card">
+            <p className="factor">Pressure</p>
+            <p className="value">{props.main.pressure}hPa</p>
+          </div>
+          <div className="card">
+            <p className="factor">Feels Like</p>
+            <p className="value">{props.main.feels_like}&deg;C</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export default Hero;

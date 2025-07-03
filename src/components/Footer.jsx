@@ -33,10 +33,15 @@ function Footer(props) {
     else navIndicators.push(0);
   }
 
+  const now = new Date();
+  let lastUpdateTime = `${
+    now.getHours() < 10 ? "0" + now.getHours() : now.getHours()
+  }:${now.getMinutes()}`;
+
   return (
     <footer className="footer">
       <div className="wrapper-main flex">
-        <p className="update-status">Last Updated : {props.lastUpdateTime}</p>
+        <p className="update-status">Last Updated : {lastUpdateTime}</p>
         <div className="pagenation flex">
           <button
             type="button"

@@ -1,0 +1,32 @@
+{
+  "coord": {
+    "lon": 77.2167,
+    "lat": 28.6667
+  },
+  "weather": [
+    {
+      "id": 802,
+      "main": "Clouds",
+      "description": "Scattered Clouds",
+      "icon": "03d"
+    }
+  ],
+  "main": {
+    "temp": 34.5,
+    "feels_like": 38.2,
+    "temp_min": 34,
+    "temp_max": 35,
+    "pressure": 1005,
+    "humidity": 47
+  },
+  "wind": {
+    "speed": 4.6,
+    "deg": 210
+  },
+  "sys": {
+    "country": "IN",
+    "sunrise": 1719123456,
+    "sunset": 1719171234
+  },
+  "cityName": "SanAndreas"
+}
