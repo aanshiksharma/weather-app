@@ -76,8 +76,9 @@ function Header(props) {
           <form
             className={`${searchBar ? "" : "hidden"} searchBar flex`}
             onSubmit={(event) => {
-              if (searchField.current.value.trim() !== "")
+              if (searchField.current.value.trim() !== "") {
                 setCityName(searchField.current.value);
+              }
               event.preventDefault();
             }}
           >

@@ -8,46 +8,64 @@ import "./utils.css";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-
-// mock weather data
-import mockWeather from "./mockData.json";
+import LoadingScreen from "./components/LoadingScreen";
+import ErrorScreen from "./components/ErrorScreen";
 
 let numPages = 3;
 function App() {
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-  const cityInput = useRef(null);
-  const inputForm = useRef(null);
+  const [weatherData, setWeatherData] = useState(null);
 
-  // const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
+  const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
-  // useEffect(() => {
-  //   if ("geolocation" in navigator) {
-  //     navigator.geolocation.getCurrentPosition(
-  //       (position) => {
-  //         const { latitude, longitude } = position.coords;
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(async (position) => {
+        const { latitude, longitude } = position.coords;
 
-  //         // API integration occurs here and we put the coordinates into the API to get the weather forecast for the user's current location.
-  //       },
-  //       (err) => {
-  //         setError("Failed to load weather");
-  //         setLoading(true);
-  //       }
-  //     );
-  //   } else {
-  //     setError("Geolocation was not supported by your browser.");
-  //     setLoading(false);
-  //   }
-  // }, []);
+        try {
+          const res = await fetch(
+            `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+          );
+
+          const data = await res.json();
+
+          if (res.ok) {
+            setWeatherData(data);
+            console.log(res);
+            console.log(data);
+          } else setError(data.message || "Something went wrong.");
+        } catch (err) {
+          setError("Failed to fetch weather data.");
+        } finally {
+          setLoading(false);
+        }
+      });
+    }
+  }, []);
+
+  if (loading) return <LoadingScreen />;
+  if (error) return <ErrorScreen errorMessage={error} />;
+
+  // Destructure for easy use
+  const {
+    name,
+    main: { temp, feels_like, pressure, humidity },
+    weather,
+    wind: { speed },
+  } = weatherData;
+  const weatherDesc = weather[0].description;
+  const icon = weather[0].icon;
 
   return (
     <>
-      <Header cityName={mockWeather.cityName} />
+      <Header cityName={weatherData.name} />
       <Hero
-        cityName={mockWeather.cityName}
-        main={mockWeather.main}
-        weather={mockWeather.weather[0]}
-        wind={mockWeather.wind}
+        cityName={weatherData.name}
+        main={weatherData.main}
+        weather={weatherData.weather[0]}
+        wind={weatherData.wind}
       />
       <Footer numPages={numPages} currPage={1} />
       {/*       

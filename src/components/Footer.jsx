@@ -36,7 +36,7 @@ function Footer(props) {
   const now = new Date();
   let lastUpdateTime = `${
     now.getHours() < 10 ? "0" + now.getHours() : now.getHours()
-  }:${now.getMinutes()}`;
+  }:${now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes()}`;
 
   return (
     <footer className="footer">
