@@ -21,27 +21,36 @@ function App() {
 
   useEffect(() => {
     if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(async (position) => {
-        const { latitude, longitude } = position.coords;
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
 
-        try {
-          const res = await fetch(
-            `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
-          );
+          try {
+            const res = await fetch(
+              `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
+            );
 
-          const data = await res.json();
+            const data = await res.json();
 
-          if (res.ok) {
-            setWeatherData(data);
-            console.log(res);
-            console.log(data);
-          } else setError(data.message || "Something went wrong.");
-        } catch (err) {
-          setError("Failed to fetch weather data.");
-        } finally {
+            if (res.ok) {
+              setWeatherData(data);
+              console.log(res);
+              console.log(data);
+            } else setError(data.message || "Something went wrong.");
+          } catch (err) {
+            setError("Failed to fetch weather data.");
+          } finally {
+            setLoading(false);
+          }
+        },
+        (err) => {
+          setError("Failed to get location.");
           setLoading(false);
         }
-      });
+      );
+    } else {
+      setError("Location was not supported by your browser / device.");
+      setLoading(false);
     }
   }, []);
 
