@@ -17,6 +17,7 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [weatherData, setWeatherData] = useState(null);
 
+  // Do not forget to add the .env file to the root directory
   const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
   useEffect(() => {
